@@ -26,6 +26,8 @@
  */
 @property (nonatomic, strong) NSString *selectedTopic;
 @property (nonatomic, strong) NSString *mailSubject;
+@property (nonatomic, strong) NSString *initialMailBody;
+
 
 @property (nonatomic, assign) BOOL showsUserEmail;
 @property (nonatomic, assign) BOOL hidesTopicCell;

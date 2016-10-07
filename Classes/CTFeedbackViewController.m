@@ -128,10 +128,6 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
 {
     [super viewDidAppear:animated];
     
-    if (!self.contentCellItem.textView.text.length) {
-        self.contentCellItem.textView.text = [NSString stringWithFormat:@"Hi %@,\n\n", self.appName];
-    }
-    
     [self.contentCellItem.textView becomeFirstResponder];
 }
 
@@ -144,6 +140,15 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
 - (void)dealloc
 {
     [self.contentCellItem removeObserver:self forKeyPath:@"cellHeight"];
+}
+
+#pragma mark - Layout
+
+- (void)viewDidLayoutSubviews
+{
+    CGRect frame = self.contentCellItem.textView.frame;
+    frame.size.width = CGRectGetWidth(self.tableView.frame);
+    self.contentCellItem.textView.frame = frame;
 }
 
 #pragma mark - Key value observing
@@ -222,6 +227,12 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
 
     self.contentCellItem = [CTFeedbackContentCellItem new];
     [self.contentCellItem addObserver:self forKeyPath:@"cellHeight" options:NSKeyValueObservingOptionNew context:nil];
+    [self.contentCellItem.textView setTextContainerInset:UIEdgeInsetsMake(12, 12, 12, 12)];
+    
+    if (self.initialMailBody.length) {
+        self.contentCellItem.textView.text = self.initialMailBody;
+    }
+    
     [result addObject:self.contentCellItem];
     
     return result.copy;
