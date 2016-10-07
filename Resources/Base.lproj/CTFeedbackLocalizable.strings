@@ -26,7 +26,7 @@
 
 "App Info" = "App Info";
 
-"Feedback" = "Feedback";
+"Feedback" = "Contact Us";
 
 "Topic" = "Topic";
 
@@ -40,9 +40,9 @@
 
 "Dismiss"="Dismiss";
 
-"Additional Info"="Additional Info";
+"Additional Info"="Additional Info (Optional)";
 
-"Additional detail"="Select the feedback attachment (picture)";
+"Additional detail"="Add photo";
 
 "Cancel"="Cancel";
 
