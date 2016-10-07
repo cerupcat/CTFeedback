@@ -33,6 +33,7 @@
 @property (nonatomic, assign) BOOL hidesAppVersionCell;
 @property (nonatomic, assign) BOOL hidesAppBuildCell;
 @property (nonatomic, assign) BOOL hidesAdditionalContent;
+@property (nonatomic, assign) BOOL hidesDeviceInfoCell;
 @property (nonatomic, assign) BOOL useCustomCallback;
 
 @property (nonatomic, readonly) NSString *platformString;
