@@ -255,6 +255,10 @@ typedef NS_ENUM(NSInteger, CTFeedbackSection){
                                                         cancelButtonTitle:CTFBLocalizedString(@"Cancel")
                                                    destructiveButtonTitle:nil
                                                         otherButtonTitles:CTFBLocalizedString(@"Camera"), CTFBLocalizedString(@"PhotoLibrary"), nil];
+        
+//        choiceSheet.sourceView = [UIView alloc];
+//        choiceSheet.sourceRect = button.bounds;
+        
 		[choiceSheet showInView:weakSelf.view];
     };
 
@@ -491,7 +495,14 @@ static NSString * const ATTACHMENT_FILENAME = @"screenshot.jpg";
         if (self.screenshotAttachment && [self.screenshotAttachment length]>0) {
             [controller addAttachmentData:self.screenshotAttachment mimeType:MIME_TYPE_JPEG fileName:ATTACHMENT_FILENAME];
         }
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:controller animated:YES completion:nil];
+        
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        if (window.rootViewController.presentedViewController) {
+            [window.rootViewController.presentedViewController presentViewController:controller animated:YES completion:nil];
+        } else {
+            [window.rootViewController presentViewController:controller animated:YES completion:nil];
+        }
+        
     } else {
         if ([UIAlertController class]) {
             UIAlertController *alert= [UIAlertController alertControllerWithTitle:CTFBLocalizedString(@"Error")
